@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_login"
+    tools:context="com.ipd.tankking.activity.RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_login_input"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5">
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y100"
+            android:layout_marginEnd="@dimen/x100"
+            android:layout_marginStart="@dimen/x100"
+            android:layout_marginTop="@dimen/y150"
+            android:background="@drawable/bg_input_et"
+            android:hint="输入手机号"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:paddingStart="@dimen/x50"
+            android:textColor="@color/white"
+            android:textColorHint="@color/tx_hint"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y100"
+            android:layout_marginEnd="@dimen/x100"
+            android:layout_marginStart="@dimen/x100"
+            android:layout_marginTop="@dimen/y30"
+            android:background="@drawable/bg_input_et"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_captcha"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_input_et"
+                android:hint="输入短信验证码"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingStart="@dimen/x50"
+                android:textColor="@color/white"
+                android:textColorHint="@color/tx_hint"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_get_captcha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/x80"
+                android:text="获取验证码"
+                android:textColor="@color/get_pwd" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y100"
+            android:layout_marginEnd="@dimen/x100"
+            android:layout_marginStart="@dimen/x100"
+            android:layout_marginTop="@dimen/y30"
+            android:background="@drawable/bg_input_et"
+            android:hint="输入登录密码"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:paddingStart="@dimen/x50"
+            android:textColor="@color/white"
+            android:textColorHint="@color/tx_hint"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x150"
+            android:layout_marginTop="@dimen/y50"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/select_check"
+                android:scaleX="0.6"
+                android:scaleY="0.6" />
+
+            <TextView
+                android:id="@+id/tv_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x20"
+                android:text="我已阅读并同意"
+                android:textColor="@color/tx_hint" />
+
+            <TextView
+                android:id="@+id/tv_user_pact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="《用户注册协议》"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/y50"
+            android:layout_marginEnd="@dimen/x100"
+            android:layout_marginStart="@dimen/x100"
+            android:layout_marginTop="@dimen/y50"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ib_back"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:scaleX="1.6"
+                android:scaleY="1.6"
+                android:src="@mipmap/ic_back" />
+
+            <Button
+                android:id="@+id/bt_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_confirm" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y70"
+        android:src="@mipmap/ic_register_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

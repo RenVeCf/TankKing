@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_gold_store"
+    tools:context="com.ipd.tankking.activity.DiamondStoreActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_vip_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y130"
+        android:background="@color/bg_title"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_back1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="钻石商城"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_gold" />
+
+                <TextView
+                    android:id="@+id/tv_gold"
+                    android:layout_width="@dimen/x300"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_intput"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/y10"
+                    android:paddingStart="@dimen/x20"
+                    android:paddingTop="@dimen/y10"
+                    android:text="12321321"
+                    android:textColor="@color/tx_fee" />
+
+                <ImageButton
+                    android:id="@+id/ib_gold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/ic_go_buy" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_diamond" />
+
+                <TextView
+                    android:id="@+id/tv_diamond"
+                    android:layout_width="@dimen/x300"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_intput"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/y10"
+                    android:paddingStart="@dimen/x20"
+                    android:paddingTop="@dimen/y10"
+                    android:text="12321321"
+                    android:textColor="@color/tx_fee" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_diamond_rule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/x100"
+        android:layout_marginStart="@dimen/x100"
+        android:layout_marginTop="@dimen/y50"
+        android:gravity="center_vertical"
+        android:text="1元=1钻石    1钻石=2金币"
+        android:textColor="@color/tx_show"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_vip_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/x100"
+        android:layout_marginStart="@dimen/x100"
+        android:layout_marginTop="@dimen/y50"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_diamond_rule">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/x70"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/bg_vip_item"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="50 钻石"
+                    android:textColor="@color/tx_vip"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_diamond1" />
+
+                <TextView
+                    android:id="@+id/tv_diamond1_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="50 元 或 100 金币"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y110"
+                android:layout_marginTop="@dimen/y50"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_buy_diamond1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/x25"
+                    android:layout_weight="1"
+                    android:background="@mipmap/bg_diamond_buy"
+                    android:gravity="center"
+                    android:text="购买"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/bt_exchange_diamond1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/x25"
+                    android:layout_weight="1"
+                    android:background="@mipmap/bg_diamond_exchange"
+                    android:gravity="center"
+                    android:text="兑换"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/x70"
+            android:layout_marginStart="@dimen/x70"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/bg_vip_item"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="200 钻石"
+                    android:textColor="@color/tx_vip"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_diamond1" />
+
+                <TextView
+                    android:id="@+id/tv_diamond2_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="200 元 或 400 金币"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y110"
+                android:layout_marginTop="@dimen/y50"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_buy_diamond2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/x25"
+                    android:layout_weight="1"
+                    android:background="@mipmap/bg_diamond_buy"
+                    android:gravity="center"
+                    android:text="购买"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/bt_exchange_diamond2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/x25"
+                    android:layout_weight="1"
+                    android:background="@mipmap/bg_diamond_exchange"
+                    android:gravity="center"
+                    android:text="兑换"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x70"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/bg_vip_item"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="500 钻石"
+                    android:textColor="@color/tx_vip"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_diamond1" />
+
+                <TextView
+                    android:id="@+id/tv_diamond3_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="500 元 或 1000 金币"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y110"
+                android:layout_marginTop="@dimen/y50"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_buy_diamond3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/x25"
+                    android:layout_weight="1"
+                    android:background="@mipmap/bg_diamond_buy"
+                    android:gravity="center"
+                    android:text="购买"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/bt_exchange_diamond3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/x25"
+                    android:layout_weight="1"
+                    android:background="@mipmap/bg_diamond_exchange"
+                    android:gravity="center"
+                    android:text="兑换"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

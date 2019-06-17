@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_gold_store"
+    tools:context="com.ipd.tankking.activity.GoldStoreActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_vip_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y130"
+        android:background="@color/bg_title"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_back1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="金币商城"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_gold" />
+
+                <TextView
+                    android:id="@+id/tv_gold"
+                    android:layout_width="@dimen/x300"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_intput"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/y10"
+                    android:paddingStart="@dimen/x20"
+                    android:paddingTop="@dimen/y10"
+                    android:textColor="@color/tx_fee" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_diamond" />
+
+                <TextView
+                    android:id="@+id/tv_diamond"
+                    android:layout_width="@dimen/x300"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_intput"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/y10"
+                    android:paddingStart="@dimen/x20"
+                    android:paddingTop="@dimen/y10"
+                    android:textColor="@color/tx_fee" />
+
+                <ImageButton
+                    android:id="@+id/ib_diamond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/ic_go_buy" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_gold_rule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/x100"
+        android:layout_marginStart="@dimen/x100"
+        android:layout_marginTop="@dimen/y50"
+        android:gravity="center_vertical"
+        android:text="1元=1钻石    1钻石=2金币"
+        android:textColor="@color/tx_show"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_vip_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/x100"
+        android:layout_marginStart="@dimen/x100"
+        android:layout_marginTop="@dimen/y50"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_gold_rule">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/x70"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/bg_vip_item"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="100 金币"
+                    android:textColor="@color/tx_vip"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_gold1" />
+
+                <TextView
+                    android:id="@+id/tv_gold1_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="需 50 钻"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_buy_gold1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y110"
+                android:layout_marginTop="@dimen/y50"
+                android:background="@mipmap/bg_gold_buy"
+                android:gravity="center"
+                android:text="立即兑换"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/x70"
+            android:layout_marginStart="@dimen/x70"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/bg_vip_item"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="500 金币"
+                    android:textColor="@color/tx_vip"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_gold2" />
+
+                <TextView
+                    android:id="@+id/tv_gold2_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="需 250 钻"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_buy_gold2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y110"
+                android:layout_marginTop="@dimen/y50"
+                android:background="@mipmap/bg_gold_buy"
+                android:gravity="center"
+                android:text="立即兑换"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x70"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/bg_vip_item"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1000 金币"
+                    android:textColor="@color/tx_vip"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_gold3" />
+
+                <TextView
+                    android:id="@+id/tv_gold3_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="需 550 钻"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_buy_gold3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y110"
+                android:layout_marginTop="@dimen/y50"
+                android:background="@mipmap/bg_gold_buy"
+                android:gravity="center"
+                android:text="立即兑换"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
