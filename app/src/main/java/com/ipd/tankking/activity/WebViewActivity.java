@@ -86,12 +86,14 @@ public class WebViewActivity extends BaseActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setUseWideViewPort(true);
+        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
         //支持自动加载图片
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);// 排版适应屏幕
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
+        wvContent.clearCache(true);
         wvContent.loadUrl(h5Url);
     }
 
