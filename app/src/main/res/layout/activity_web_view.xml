@@ -16,13 +16,28 @@
         app:is_back="true"
         app:title_color="@color/black" />
 
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0.5dp"-->
-        <!--android:background="#e0e0e0" />-->
-
-    <WebView
-        android:id="@+id/wv_content"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:ignore="WebViewLayout">
+
+        <WebView
+            android:id="@+id/wv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/bt_share"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y100"
+            android:layout_marginBottom="@dimen/y150"
+            android:layout_marginStart="@dimen/x250"
+            android:background="@mipmap/bg_go_share"
+            android:gravity="center"
+            android:text="即刻分享"
+            android:textColor="@color/bg_title"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 </LinearLayout>

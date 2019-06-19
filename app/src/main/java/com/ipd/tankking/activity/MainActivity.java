@@ -22,6 +22,7 @@ import com.ipd.tankking.bean.GetUserInfoBean;
 import com.ipd.tankking.common.view.CircleImageView;
 import com.ipd.tankking.contract.GetUserInfoContract;
 import com.ipd.tankking.presenter.GetUserInfoPresenter;
+import com.ipd.tankking.service.MusicService;
 import com.ipd.tankking.utils.ApplicationUtil;
 import com.ipd.tankking.utils.NavigationBarUtil;
 import com.ipd.tankking.utils.SPUtil;
@@ -114,6 +115,8 @@ public class MainActivity extends BaseActivity<GetUserInfoContract.View, GetUser
         tvUserName.setText(SPUtil.get(this, NAME, "") + "");
 
         requestPermission(); //支付权限申请
+
+        startService(new Intent(this, MusicService.class));
     }
 
     @Override

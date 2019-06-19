@@ -1,32 +1,50 @@
 package com.ipd.tankking.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.http.SslError;
 import android.os.Build;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.ipd.tankking.R;
 import com.ipd.tankking.base.BaseActivity;
-import com.ipd.tankking.base.BasePresenter;
-import com.ipd.tankking.base.BaseView;
+import com.ipd.tankking.bean.ShareBean;
 import com.ipd.tankking.common.view.TopView;
+import com.ipd.tankking.contract.ShareContract;
+import com.ipd.tankking.presenter.SharePresenter;
 import com.ipd.tankking.utils.SPUtil;
+import com.ipd.tankking.utils.T;
+
+import java.util.TreeMap;
 
 import butterknife.BindView;
+import butterknife.OnClick;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.wechat.friends.Wechat;
+import cn.sharesdk.wechat.moments.WechatMoments;
+import io.reactivex.ObservableTransformer;
 
 import static com.ipd.tankking.common.config.IConstants.USER_ID;
 import static com.ipd.tankking.common.config.UrlConfig.BASE_URL;
 
-public class WebViewActivity extends BaseActivity {
+public class WebViewActivity extends BaseActivity<ShareContract.View, ShareContract.Presenter> implements ShareContract.View {
 
     @BindView(R.id.tv_webview_top)
     TopView tvWebviewTop;
@@ -34,9 +52,12 @@ public class WebViewActivity extends BaseActivity {
     TextView ivTopTitle;
     @BindView(R.id.wv_content)
     WebView wvContent;
+    @BindView(R.id.bt_share)
+    Button btShare;
 
     private String h5Url = "";//H5链接
     private int h5Type = 0;//H5type
+    private String shareUrl = "";//分享链接
 
     @Override
     public int getLayoutId() {
@@ -44,15 +65,16 @@ public class WebViewActivity extends BaseActivity {
     }
 
     @Override
-    public BasePresenter createPresenter() {
-        return null;
+    public ShareContract.Presenter createPresenter() {
+        return new SharePresenter(this);
     }
 
     @Override
-    public BaseView createView() {
-        return null;
+    public ShareContract.View createView() {
+        return this;
     }
 
+    @SuppressLint("JavascriptInterface")
     @Override
     public void init() {
         //防止状态栏和标题重叠
@@ -84,6 +106,7 @@ public class WebViewActivity extends BaseActivity {
         }
         WebSettings webSettings = wvContent.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        wvContent.addJavascriptInterface(new JsCallBack(), "hello-android");
         webSettings.setDomStorageEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
@@ -103,16 +126,13 @@ public class WebViewActivity extends BaseActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        setResult(RESULT_OK, new Intent().putExtra("refresh", 1));
-        finish();
-        if (WebViewActivity.this.getCurrentFocus() != null) {
-            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-    }
-
-    @Override
     public void initData() {
+        if (h5Type == 5) {
+            TreeMap<String, String> shareMap = new TreeMap<>();
+            shareMap.put("uid", SPUtil.get(this, USER_ID, "") + "");
+            getPresenter().getShare(shareMap, true, false);
+        }
+
         //设置客户端，让点击跳转操作在当前应用内存进行操作
         wvContent.setWebViewClient(new WebViewClient() {
             @Override
@@ -150,5 +170,130 @@ public class WebViewActivity extends BaseActivity {
                 ivTopTitle.setText(title);
             }
         });
+    }
+
+    @OnClick(R.id.bt_share)
+    public void onViewClicked() {
+        showPopWindow();
+    }
+
+    // 分享至
+    private void showPopWindow() {
+        final TextView tvTitle;
+        final LinearLayout llShareWechat;
+        final LinearLayout llShareCircleOfFriends;
+
+        // 用于PopupWindow的View
+        View contentView = LayoutInflater.from(this).inflate(R.layout.pop_share, null, false);
+        // 创建PopupWindow对象，其中：
+        // 第一个参数是用于PopupWindow中的View，第二个参数是PopupWindow的宽度，
+        // 第三个参数是PopupWindow的高度，第四个参数指定PopupWindow能否获得焦点
+        final PopupWindow window = new PopupWindow(contentView, 900, 500, true);
+        tvTitle = contentView.findViewById(R.id.tv_title);
+        tvTitle.setText("分享至");
+        llShareWechat = contentView.findViewById(R.id.ll_share_wechat);
+        llShareWechat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!shareUrl.equals(""))
+                    showShare(shareUrl, Wechat.NAME);
+                else
+                    T.Short("请稍后点击...", 0);
+            }
+        });
+        llShareCircleOfFriends = contentView.findViewById(R.id.ll_share_circle_of_friends);
+        llShareCircleOfFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!shareUrl.equals(""))
+                    showShare1(shareUrl, WechatMoments.NAME);
+                else
+                    T.Short("请稍后点击...", 0);
+            }
+        });
+        // 设置PopupWindow的背景
+//        window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.bg_user_pact)));
+        // 设置PopupWindow是否能响应外部点击事件
+        window.setOutsideTouchable(true);
+        // 设置PopupWindow是否能响应点击事件
+        window.setTouchable(true);
+        // 显示PopupWindow，其中：
+        // 第一个参数是PopupWindow的锚点，第二和第三个参数分别是PopupWindow相对锚点的x、y偏移
+//        window.showAsDropDown(view, 0, 0);
+        // 或者也可以调用此方法显示PopupWindow，其中：
+        // 第一个参数是PopupWindow的父View，第二个参数是PopupWindow相对父View的位置，
+        // 第三和第四个参数分别是PopupWindow相对父View的x、y偏移
+        // window.showAtLocation(parent, gravity, x, y);
+        window.showAtLocation(this.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+        window.setAnimationStyle(R.style.animTranslate);
+    }
+
+    // 分享微信好友
+    private void showShare(String url, String platform) {
+        OnekeyShare oks = new OnekeyShare();
+        if (platform != null) {
+            oks.setPlatform(platform);
+        }
+        oks.disableSSOWhenAuthorize();
+        oks.setTitle("坦克王者");
+        oks.setText("");
+        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.mipmap.ic_logo);//显示APP本身自带图片
+        oks.setImageData(bitmap);//bitmap格式图片
+        oks.setUrl(url);
+        oks.setComment("很棒，值得分享！！");
+        oks.show(this);
+    }
+
+    // 分享微信朋友圈
+    private void showShare1(String url, String platform) {
+        OnekeyShare oks = new OnekeyShare();
+        if (platform != null) {
+            oks.setPlatform(platform);
+        }
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("文本内容");
+        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.mipmap.ic_logo);//显示APP本身自带图片
+        oks.setImageData(bitmap);//bitmap格式图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl(url);
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("很棒，值得分享！！");
+        // 启动分享GUI
+        oks.show(this);
+    }
+
+    // H5的返回方法（供JS调用）
+    class JsCallBack {
+
+        @JavascriptInterface
+        public void javaMethod() {
+            finish();
+            if (WebViewActivity.this.getCurrentFocus() != null) {
+                ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_OK, new Intent().putExtra("refresh", 1));
+        finish();
+        if (WebViewActivity.this.getCurrentFocus() != null) {
+            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    @Override
+    public void resultShare(ShareBean data) {
+        if (data.getCode() == 200) {
+            shareUrl = data.getData().getShare_url();
+        }
+    }
+
+    @Override
+    public <T> ObservableTransformer<T, T> bindLifecycle() {
+        return this.bindToLifecycle();
     }
 }

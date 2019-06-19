@@ -30,6 +30,7 @@ import com.ipd.tankking.bean.SelectBankBean;
 import com.ipd.tankking.bean.WithdrawBankBean;
 import com.ipd.tankking.contract.WalletContract;
 import com.ipd.tankking.presenter.WalletPresenter;
+import com.ipd.tankking.utils.MD5Utils;
 import com.ipd.tankking.utils.SPUtil;
 import com.ipd.tankking.utils.T;
 import com.trello.rxlifecycle2.android.FragmentEvent;
@@ -320,8 +321,9 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
         final TextView tvTitle;
         final EditText etBankName;
         final EditText etUserName;
+        final EditText etUserPhone;
+        final EditText etIdCard;
         final EditText etBankCode;
-        final EditText etOpenBankName;
         final Button btPopConfirm;
 
         // 用于PopupWindow的View
@@ -329,7 +331,7 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
         // 创建PopupWindow对象，其中：
         // 第一个参数是用于PopupWindow中的View，第二个参数是PopupWindow的宽度，
         // 第三个参数是PopupWindow的高度，第四个参数指定PopupWindow能否获得焦点
-        final PopupWindow window = new PopupWindow(contentView, 1000, 800, true);
+        final PopupWindow window = new PopupWindow(contentView, 1200, 1000, true);
         tvTitle = contentView.findViewById(R.id.tv_title);
         if (bankType == 0)
             tvTitle.setText("添加银行卡");
@@ -337,8 +339,9 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
             tvTitle.setText("修改银行卡");
         etBankName = contentView.findViewById(R.id.et_bank_name);
         etUserName = contentView.findViewById(R.id.et_user_name);
+        etUserPhone = contentView.findViewById(R.id.et_user_phone);
+        etIdCard = contentView.findViewById(R.id.et_id_card);
         etBankCode = contentView.findViewById(R.id.et_bank_code);
-        etOpenBankName = contentView.findViewById(R.id.et_open_bank_name);
         btPopConfirm = contentView.findViewById(R.id.bt_pop_confirm);
         btPopConfirm.setBackgroundResource(R.mipmap.ic_confirm);
         btPopConfirm.setOnClickListener(new View.OnClickListener() {
@@ -346,10 +349,10 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
             public void onClick(View v) {
                 if (bankType == 0) {
                     // 添加银行卡
-                    addBank(etBankName.getText().toString().trim(), etUserName.getText().toString().trim(), etBankCode.getText().toString().trim(), etOpenBankName.getText().toString().trim());
+                    addBank(etBankName.getText().toString().trim(), etUserName.getText().toString().trim(), etUserPhone.getText().toString().trim(), etIdCard.getText().toString().trim(), etBankCode.getText().toString().trim());
                 } else {
                     // 修改银行卡
-                    modifyBank(etBankName.getText().toString().trim(), etUserName.getText().toString().trim(), etBankCode.getText().toString().trim(), etOpenBankName.getText().toString().trim(), bankListBean.get(position).getId());
+                    modifyBank(etBankName.getText().toString().trim(), etUserName.getText().toString().trim(), etUserPhone.getText().toString().trim(), etIdCard.getText().toString().trim(), etBankCode.getText().toString().trim(), bankListBean.get(position).getId());
                     WalletFragment.this.position = position;
                 }
                 window.dismiss();
@@ -426,32 +429,41 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
 
     // 提现请求
     private void withdrawBank() {
+        String id = SPUtil.get(getActivity(), USER_ID, "") + "";
+        String bank = bankListBean.get(position).getBank();
+        String money = etWithdrawFee.getText().toString().trim();
+        String timestamp = String.format("%010d", System.currentTimeMillis() / 1000);
+
         TreeMap<String, String> withdrawBankMap = new TreeMap<>();
-        withdrawBankMap.put("id", SPUtil.get(getActivity(), USER_ID, "") + "");
-        withdrawBankMap.put("bank", bankListBean.get(position).getBank());
-        withdrawBankMap.put("money", etWithdrawFee.getText().toString().trim());
+        withdrawBankMap.put("id", id);
+        withdrawBankMap.put("bank", bank);
+        withdrawBankMap.put("money", money);
+        withdrawBankMap.put("timestamp", timestamp);
+        withdrawBankMap.put("sign", MD5Utils.encodeMD5("bank=" + bank + "&id=" + id + "&money=" + money + "&timestamp=" + timestamp + "&key=4QrcOUm6Wau+VuBX8g+IPg=="));
         getPresenter().getWithdrawBank(withdrawBankMap, true, false);
     }
 
     // 添加银行卡请求
-    private void addBank(String name, String uname, String bank, String bank_open) {
+    private void addBank(String name, String uname, String phone, String idCard, String bank) {
         TreeMap<String, String> addBankMap = new TreeMap<>();
         addBankMap.put("uid", SPUtil.get(getActivity(), USER_ID, "") + "");
         addBankMap.put("name", name);
         addBankMap.put("uname", uname);
+        addBankMap.put("mobile", phone);
+        addBankMap.put("id_card", idCard);
         addBankMap.put("bank", bank);
-        addBankMap.put("bank_open", bank_open);
         getPresenter().getAddBank(addBankMap, true, false);
     }
 
     // 修改银行卡请求
-    private void modifyBank(String name, String uname, String bank, String bank_open, int bankId) {
+    private void modifyBank(String name, String uname, String phone, String idCard, String bank, int bankId) {
         TreeMap<String, String> addBankMap = new TreeMap<>();
         addBankMap.put("uid", SPUtil.get(getActivity(), USER_ID, "") + "");
         addBankMap.put("name", name);
         addBankMap.put("uname", uname);
+        addBankMap.put("mobile", phone);
+        addBankMap.put("id_card", idCard);
         addBankMap.put("bank", bank);
-        addBankMap.put("bank_open", bank_open);
         addBankMap.put("id", bankId + "");
         getPresenter().getModifyBank(addBankMap, true, false);
     }

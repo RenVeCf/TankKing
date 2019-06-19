@@ -157,6 +157,11 @@
                 <data android:scheme="wx359eeab705dff0ac" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".service.MusicService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
