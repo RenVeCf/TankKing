@@ -33,6 +33,7 @@
             android:layout_marginBottom="@dimen/y150"
             android:layout_marginStart="@dimen/x250"
             android:background="@mipmap/bg_go_share"
+            android:visibility="gone"
             android:gravity="center"
             android:text="即刻分享"
             android:textColor="@color/bg_title"

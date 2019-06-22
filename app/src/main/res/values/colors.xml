@@ -176,5 +176,6 @@
     <color name="tx_vip">#FFBD55</color>
     <color name="bg_line">#514E44</color>
     <color name="bg_search">#FFE58C</color>
+    <color name="color_f4">#f4f4f4</color>
 
 </resources>

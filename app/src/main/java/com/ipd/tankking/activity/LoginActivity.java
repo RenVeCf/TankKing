@@ -23,6 +23,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.ObservableTransformer;
 
+import static com.ipd.tankking.common.config.IConstants.AVATAR;
 import static com.ipd.tankking.common.config.IConstants.IS_LOGIN;
 import static com.ipd.tankking.common.config.IConstants.NAME;
 import static com.ipd.tankking.common.config.IConstants.PHONE;

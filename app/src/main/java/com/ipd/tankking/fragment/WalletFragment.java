@@ -498,13 +498,13 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
                 showPopWindow();
                 break;
             case R.id.bt_withdraw_rule:
-                showPopWindow1("钻石提现规则", "满50钻石可以提现。\n" +
-                        "每笔提现手续费10元，无论金额大小例如（100000元）也是10元手续费。 \n" +
-                        "青铜战队直推团队累计30人（自己的一二级会员累计） 所有提现金额累计的2%\n" +
+                showPopWindow1("钻石奖励规则", "所有用户满50钻石以及50的整数倍即可获得公司推广奖励。\n" +
+                        "每笔奖励扣除10元手续费。 \n" +
+                        "青铜战队直推团队累计30人(自己的一二级会员累计) 所有提现金额累计的2%\n" +
                         "白银战队直推团队累计100人 所有提现金额累计的4% \n" +
                         "黄金战队直推团队累计500人 所有提现金额累计的6%\n" +
                         "铂金战队直推团队累计2000人 所有提现金额累计的8%\n" +
-                        "钻石战队直推团队累计10000人 所有提现金额累计的10%");
+                        "钻石战队直推团队累计10000人 所有提现金额累计的10%\n\n");
                 break;
             case R.id.ib_confirm_withdraw:
                 if (!tvBank.getText().toString().trim().equals("请选择到账银行卡")) {

@@ -363,7 +363,7 @@ public class VipActivity extends BaseActivity<VipPayContract.View, VipPayContrac
                         "户以及申请会员免费体验服务且在会员试用期内的用户(以下简称”会员”)。\n" +
                         "第二条坦克大战服务协议的修订\n" +
                         "1.坦克大战有权以网站公告等方式进行不定期地制定、修改本协议及/或相关服务规则。用户在使用澳洲出\n" +
-                        "行会画板素材采集自用户等下一个黎明素加载更多推荐");
+                        "行会画板素材采集自用户等下一个黎明素加载更多推荐\n\n");
                 break;
             case R.id.bt_buy_vip1:
                 diamondFee = "20";

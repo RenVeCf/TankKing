@@ -106,7 +106,7 @@ public class WebViewActivity extends BaseActivity<ShareContract.View, ShareContr
         }
         WebSettings webSettings = wvContent.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        wvContent.addJavascriptInterface(new JsCallBack(), "hello-android");
+        wvContent.addJavascriptInterface(new JsCallBack(), "JsCallBack");
         webSettings.setDomStorageEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
@@ -289,6 +289,7 @@ public class WebViewActivity extends BaseActivity<ShareContract.View, ShareContr
     public void resultShare(ShareBean data) {
         if (data.getCode() == 200) {
             shareUrl = data.getData().getShare_url();
+            btShare.setVisibility(View.VISIBLE);
         }
     }
 

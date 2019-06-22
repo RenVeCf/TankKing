@@ -21,21 +21,11 @@
         android:scrollbars="none">
 
         <TextView
+            android:id="@+id/tv_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/x100"
-            android:lineSpacingExtra="@dimen/y40"
-            android:text="欢迎使用坦克大战为您提供的坦克大战服务。\n
-为了保障您(以下简称”用户”)的权益，请在使用坦克大战服务之前，详细阅读此服务协议(以下简称”本协议”)的所有内容，特别是加粗部分。\n
-当用户阅读并勾选《用户注册协议》，即表示用户同意并签署了本协议，并同意遵守本协议的约定。该协议构成用户与坦克大战达成的协议，具有法律效力。
-本协议是《坦克大战用户注册协议》的补充协议，是其不可分割的组成部分，与其构成统一整体。本协议与上述内容存在冲突的，以本协议为准。
-第一条定义：\n
-坦克大战：指在澳洲出行平台签署本协议并根据坦克大战公布的收费标准支付相应的费用后获取的特殊资格的用
-户以及申请会员免费体验服务且在会员试用期内的用户(以下简称”会员”)。\n
-第二条坦克大战服务协议的修订\n
-1.坦克大战有权以网站公告等方式进行不定期地制定、修改本协议及/或相关服务规则。用户在使用澳洲出
-行会画板素材采集自用户等下一个黎明素加载更多推荐"
+            android:layout_margin="@dimen/x60"
             android:textColor="@color/tx_hint"
-            android:textSize="18sp" />
+            android:textSize="12sp" />
     </ScrollView>
 </LinearLayout>

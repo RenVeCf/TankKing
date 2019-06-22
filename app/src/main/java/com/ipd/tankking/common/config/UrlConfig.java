@@ -10,7 +10,8 @@ public interface UrlConfig {
     /**
      * 域名
      */
-    String BASE_URL = "http://61.244.208.205:8082/"; //正式
+    String BASE_URL = "http://173.248.240.250/"; //正式
+//    String BASE_URL = "http://61.244.208.205:8082/"; //测试
 
     /**
      * 登陆

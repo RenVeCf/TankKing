@@ -24,6 +24,7 @@ import com.ipd.tankking.contract.GetUserInfoContract;
 import com.ipd.tankking.presenter.GetUserInfoPresenter;
 import com.ipd.tankking.service.MusicService;
 import com.ipd.tankking.utils.ApplicationUtil;
+import com.ipd.tankking.utils.LogUtils;
 import com.ipd.tankking.utils.NavigationBarUtil;
 import com.ipd.tankking.utils.SPUtil;
 import com.ipd.tankking.utils.T;
@@ -330,6 +331,7 @@ public class MainActivity extends BaseActivity<GetUserInfoContract.View, GetUser
         tvDiamond.setText(data.getData().getMember_diamonds());
         SPUtil.put(this, GOLD, data.getData().getMember_coin());
         SPUtil.put(this, DIAMOND, data.getData().getMember_diamonds());
+        SPUtil.put(this, AVATAR, data.getData().getMember_img());
         vipLv = data.getData().getMember_lv();
         SPUtil.put(this, VIP_LV, vipLv + "");
         switch (vipLv) {
