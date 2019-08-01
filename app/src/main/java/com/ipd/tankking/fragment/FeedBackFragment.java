@@ -68,7 +68,7 @@ public class FeedBackFragment extends BaseFragment<FeedBackContract.View, FeedBa
             TreeMap<String, String> feedBackMap = new TreeMap<>();
             feedBackMap.put("id", SPUtil.get(getActivity(), USER_ID, "") + "");
             feedBackMap.put("feed", etFeedBack.getText().toString().trim());
-            getPresenter().getFeedBack(feedBackMap, true, false);
+            getPresenter().getFeedBack(feedBackMap, false, false);
         } else
             T.Short("请填写意见", 0);
     }

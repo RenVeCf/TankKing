@@ -157,7 +157,7 @@ public class DiamondStoreActivity extends BaseActivity<DiamondStoreContract.View
                         aliPayMap.put("uid", SPUtil.get(DiamondStoreActivity.this, USER_ID, "") + "");
                         aliPayMap.put("diamond", diamondFee);
                         aliPayMap.put("payment", "1");
-                        getPresenter().getAliPay(aliPayMap, true, false);
+                        getPresenter().getAliPay(aliPayMap, false, false);
                         break;
                     case 2:
                         //微信
@@ -165,7 +165,7 @@ public class DiamondStoreActivity extends BaseActivity<DiamondStoreContract.View
                         weChatMap.put("uid", SPUtil.get(DiamondStoreActivity.this, USER_ID, "") + "");
                         weChatMap.put("diamond", diamondFee);
                         weChatMap.put("payment", "2");
-                        getPresenter().getWeChatPay(weChatMap, true, false);
+                        getPresenter().getWeChatPay(weChatMap, false, false);
                         break;
                     default:
                         T.Short("请选择支付方式", 0);
@@ -215,7 +215,7 @@ public class DiamondStoreActivity extends BaseActivity<DiamondStoreContract.View
                 TreeMap<String, String> diamondStoreMap = new TreeMap<>();
                 diamondStoreMap.put("id", SPUtil.get(DiamondStoreActivity.this, USER_ID, "") + "");
                 diamondStoreMap.put("diamond", diamond + "");
-                getPresenter().getDiamondStore(diamondStoreMap, true, false);
+                getPresenter().getDiamondStore(diamondStoreMap, false, false);
                 window.dismiss();
             }
         });

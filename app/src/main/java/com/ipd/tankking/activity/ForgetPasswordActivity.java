@@ -16,6 +16,7 @@ import com.ipd.tankking.bean.ForGetPwdBean;
 import com.ipd.tankking.contract.ForGetPwdContract;
 import com.ipd.tankking.presenter.ForGetPwdPresenter;
 import com.ipd.tankking.utils.ApplicationUtil;
+import com.ipd.tankking.utils.CountDownUtil;
 import com.ipd.tankking.utils.T;
 import com.ipd.tankking.utils.VerifyUtils;
 import com.ipd.tankking.utils.isClickUtil;
@@ -83,7 +84,7 @@ public class ForgetPasswordActivity extends BaseActivity<ForGetPwdContract.View,
             case R.id.tv_get_captcha:
                 TreeMap<String, String> captchaMap = new TreeMap<>();
                 captchaMap.put("mobile", etPhone.getText().toString().trim());
-                getPresenter().getCaptcha(captchaMap, true, false);
+                getPresenter().getCaptcha(captchaMap, false, false);
                 break;
             case R.id.ib_back:
                 if (this instanceof Activity && isClickUtil.isFastClick()) {
@@ -99,7 +100,7 @@ public class ForgetPasswordActivity extends BaseActivity<ForGetPwdContract.View,
                     registerMap.put("mobile", etPhone.getText().toString().trim());
                     registerMap.put("code", etCaptcha.getText().toString().trim());
                     registerMap.put("password", etNewPwd.getText().toString().trim());
-                    getPresenter().getForGetPwd(registerMap, true, false);
+                    getPresenter().getForGetPwd(registerMap, false, false);
                 } else {
                     T.Long("手机号码格式错误", 2);
                 }
@@ -118,9 +119,27 @@ public class ForgetPasswordActivity extends BaseActivity<ForGetPwdContract.View,
 
     @Override
     public void resultCaptcha(CaptchaBean data) {
-        if (data.getCode().equals("200"))
+        if (data.getCode().equals("200")) {
             T.Short(data.getMsg(), 1);
-        else
+            //验证码倒计时60内不能重新发送
+            new CountDownUtil(tvGetCaptcha)
+                    .setCountDownMillis(60_000L)//倒计时60000ms
+                    .setCountDownColor(R.color.get_pwd, R.color.white)//不同状态字体颜色
+                    .setOnClickListener(new View.OnClickListener() {
+                        //重新获取验证码
+                        @Override
+                        public void onClick(View v) {
+                            if (etPhone.getText().toString().trim().length() == 11 && VerifyUtils.isMobileNumber(etPhone.getText().toString().trim())) {
+                                TreeMap<String, String> captchaMap = new TreeMap<>();
+                                captchaMap.put("mobile", etPhone.getText().toString().trim());
+                                getPresenter().getCaptcha(captchaMap, false, false);
+                            } else {
+                                T.Short("请检查手机号码", 0);
+                            }
+                        }
+                    })
+                    .start();
+        } else
             T.Short(data.getMsg(), 2);
     }
 

@@ -49,7 +49,7 @@ public class AboutFragment extends BaseFragment<AboutContract.View, AboutContrac
 
     @Override
     public void initData() {
-        getPresenter().getAbout(true, false);
+        getPresenter().getAbout(false, false);
     }
 
     @Override

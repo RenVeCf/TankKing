@@ -74,7 +74,7 @@ public class ShareFragment extends BaseFragment<ShareContract.View, ShareContrac
     public void initData() {
         TreeMap<String, String> shareMap = new TreeMap<>();
         shareMap.put("uid", SPUtil.get(getActivity(), USER_ID, "") + "");
-        getPresenter().getShare(shareMap, true, false);
+        getPresenter().getShare(shareMap, false, false);
     }
 
     /**
@@ -142,8 +142,8 @@ public class ShareFragment extends BaseFragment<ShareContract.View, ShareContrac
             oks.setPlatform(platform);
         }
         oks.disableSSOWhenAuthorize();
-        oks.setTitle("坦克王者");
-        oks.setText("");
+        oks.setTitle("坦克来袭，推广有奖!");
+        oks.setText("快来陪我一起激情PK吧，不来不理你哟");
         Bitmap bitmap = BitmapFactory.decodeResource(getActivity().getApplicationContext().getResources(), R.mipmap.ic_logo);//显示APP本身自带图片
         oks.setImageData(bitmap);//bitmap格式图片
         oks.setUrl(url);
@@ -160,7 +160,7 @@ public class ShareFragment extends BaseFragment<ShareContract.View, ShareContrac
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
         // text是分享文本，所有平台都需要这个字段
-        oks.setText("文本内容");
+        oks.setText("快来陪我一起激情PK吧，不来不理你哟");
         Bitmap bitmap = BitmapFactory.decodeResource(getActivity().getApplicationContext().getResources(), R.mipmap.ic_logo);//显示APP本身自带图片
         oks.setImageData(bitmap);//bitmap格式图片
         // url仅在微信（包括好友和朋友圈）中使用

@@ -86,7 +86,7 @@ public class MsgFragment extends BaseFragment<MsgContract.View, MsgContract.Pres
         TreeMap<String, String> msgMap = new TreeMap<>();
         msgMap.put("id", SPUtil.get(getActivity(), USER_ID, "") + "");
         msgMap.put("page", page + "");
-        getPresenter().getMsg(msgMap, true, false);
+        getPresenter().getMsg(msgMap, false, false);
     }
 
     @Override

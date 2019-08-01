@@ -117,7 +117,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                     TreeMap<String, String> loginMap = new TreeMap<>();
                     loginMap.put("mobile", etPhone.getText().toString().trim());
                     loginMap.put("password", etPwd.getText().toString().trim());
-                    getPresenter().getLogin(loginMap, true, false);
+                    getPresenter().getLogin(loginMap, false, false);
                 } else {
                     T.Long("手机号码格式错误", 2);
                 }

@@ -122,7 +122,7 @@ public class GoldStoreActivity extends BaseActivity<GoldStoreContract.View, Gold
                 TreeMap<String, String> goldStoreMap = new TreeMap<>();
                 goldStoreMap.put("id", SPUtil.get(GoldStoreActivity.this, USER_ID, "") + "");
                 goldStoreMap.put("coin", gold + "");
-                getPresenter().getGoldStore(goldStoreMap, true, false);
+                getPresenter().getGoldStore(goldStoreMap, false, false);
                 window.dismiss();
             }
         });

@@ -90,7 +90,7 @@ public class PersonalFragment extends BaseFragment<ModifyPersonalDataContract.Vi
                     TreeMap<String, String> modifyUserNameMap = new TreeMap<>();
                     modifyUserNameMap.put("id", SPUtil.get(getActivity(), USER_ID, "") + "");
                     modifyUserNameMap.put("name", etName.getText().toString().trim());
-                    getPresenter().getModifyUserName(modifyUserNameMap, true, false);
+                    getPresenter().getModifyUserName(modifyUserNameMap, false, false);
                 }
                 return true;
             }

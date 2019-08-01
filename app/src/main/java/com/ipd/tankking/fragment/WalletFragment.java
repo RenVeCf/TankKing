@@ -399,7 +399,7 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
                 TreeMap<String, String> delBankMap = new TreeMap<>();
                 delBankMap.put("uid", SPUtil.get(getActivity(), USER_ID, "") + "");
                 delBankMap.put("id", bankId + "");
-                getPresenter().getDelBank(delBankMap, true, false);
+                getPresenter().getDelBank(delBankMap, false, false);
                 window.dismiss();
             }
         });
@@ -424,7 +424,7 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
     private void selectBankList() {
         TreeMap<String, String> selectBankMap = new TreeMap<>();
         selectBankMap.put("uid", SPUtil.get(getActivity(), USER_ID, "") + "");
-        getPresenter().getSelectBank(selectBankMap, true, false);
+        getPresenter().getSelectBank(selectBankMap, false, false);
     }
 
     // 提现请求
@@ -440,7 +440,7 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
         withdrawBankMap.put("money", money);
         withdrawBankMap.put("timestamp", timestamp);
         withdrawBankMap.put("sign", MD5Utils.encodeMD5("bank=" + bank + "&id=" + id + "&money=" + money + "&timestamp=" + timestamp + "&key=4QrcOUm6Wau+VuBX8g+IPg=="));
-        getPresenter().getWithdrawBank(withdrawBankMap, true, false);
+        getPresenter().getWithdrawBank(withdrawBankMap, false, false);
     }
 
     // 添加银行卡请求
@@ -452,7 +452,7 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
         addBankMap.put("mobile", phone);
         addBankMap.put("id_card", idCard);
         addBankMap.put("bank", bank);
-        getPresenter().getAddBank(addBankMap, true, false);
+        getPresenter().getAddBank(addBankMap, false, false);
     }
 
     // 修改银行卡请求
@@ -465,7 +465,7 @@ public class WalletFragment extends BaseFragment<WalletContract.View, WalletCont
         addBankMap.put("id_card", idCard);
         addBankMap.put("bank", bank);
         addBankMap.put("id", bankId + "");
-        getPresenter().getModifyBank(addBankMap, true, false);
+        getPresenter().getModifyBank(addBankMap, false, false);
     }
 
     @OnClick({R.id.ib_buy, R.id.ib_withdraw, R.id.ib_exchange, R.id.ib_back, R.id.tv_my_bank, R.id.ll_select_bank, R.id.bt_withdraw_rule, R.id.ib_confirm_withdraw, R.id.ib_my_bank_back, R.id.bt_add_bank})

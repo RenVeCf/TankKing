@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity<GetUserInfoContract.View, GetUser
     public void initData() {
         TreeMap<String, String> getUserInfoMap = new TreeMap<>();
         getUserInfoMap.put("id", SPUtil.get(this, USER_ID, "") + "");
-        getPresenter().getGetUserInfo(getUserInfoMap, true, false);
+        getPresenter().getGetUserInfo(getUserInfoMap, false, false);
     }
 
     @Override
@@ -332,6 +332,7 @@ public class MainActivity extends BaseActivity<GetUserInfoContract.View, GetUser
         SPUtil.put(this, GOLD, data.getData().getMember_coin());
         SPUtil.put(this, DIAMOND, data.getData().getMember_diamonds());
         SPUtil.put(this, AVATAR, data.getData().getMember_img());
+        Glide.with(this).load(data.getData().getMember_img()).apply(new RequestOptions().placeholder(R.mipmap.ic_default_head)).into(civHead);
         vipLv = data.getData().getMember_lv();
         SPUtil.put(this, VIP_LV, vipLv + "");
         switch (vipLv) {
